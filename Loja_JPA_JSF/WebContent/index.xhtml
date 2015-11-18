@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- Botao para voltar para pagina Criar -->
+<h:form>
+	<h:commandButton  action="#{clienteBean.novo}" value="Cadastrar novo cliente"/> 
+ 
+<!-- Tabela do JSF onde estou populando ela com a lista de clintes -->
+<h:dataTable value="#{clienteBean.clientes}" var="c" border="1">	
+
+	<h:column>
+		<f:facet name="header">ID</f:facet>
+		<h:outputText value="#{c.id}" />
+	</h:column>
+	<h:column>
+		<f:facet name="header">Nome</f:facet>
+		<h:outputText value="#{c.nome}" />
+	</h:column>
+	<h:column>
+		<f:facet name="header">Idade</f:facet>
+		<h:outputText value="#{c.idade}" />
+	</h:column>	
+	<h:column>
+		<h:commandLink action="#{clienteBean.editar}">Editar
+			<!-- Metodo que fala qual linha quero editar ao clicar -->
+			<f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{c}" />	
+		</h:commandLink> 
+	</h:column>
+	<h:column>
+		<h:commandLink action="#{clienteBean.remover}">Remover
+			<!-- Metodo que fala qual linha quero remover ao clicar -->
+			<f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{c}" />	
+		</h:commandLink> 
+	</h:column>
+</h:dataTable>
+
+</h:form>
+</html>
